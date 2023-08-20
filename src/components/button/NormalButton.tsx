@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {COLOR} from '../../constants';
-import {SIZE} from '@ddc-fis-hcm/react-native-sdk';
 
 interface NormalButtonProps {
   label: string;
@@ -32,6 +31,6 @@ const styles = StyleSheet.create({
   },
   label: {
     color: COLOR.white,
-    paddingVertical: SIZE[20],
+    paddingVertical: 20,
   },
 });

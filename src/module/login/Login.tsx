@@ -7,7 +7,6 @@ import {Status} from '../../models';
 import {loginAction} from '../../redux/reducer/user.reducer';
 import {MainRoutes} from '../../routes/routes';
 import {MainNavigationProp} from '../../routes/type';
-import {SIZE, TextField} from '@ddc-fis-hcm/react-native-sdk';
 
 const Login = ({navigation}: MainNavigationProp) => {
   const dispatch = useAppDispatch();
@@ -52,21 +51,11 @@ const Login = ({navigation}: MainNavigationProp) => {
 
   return (
     <View style={styles.container}>
-      <TextField
-        placeholder={STRING.username}
-        value={username}
-        onChangeText={onChangeUsername}
-      />
-      <TextField
-        placeholder={STRING.password}
-        value={password}
-        onChangeText={onChangePassword}
-      />
       <NormalButton
         onPress={onPressLogin}
         label={STRING.login}
         style={{
-          marginVertical: SIZE[10],
+          marginVertical: 10,
         }}
       />
     </View>
@@ -80,6 +69,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: SIZE[10],
   },
 });
