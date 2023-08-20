@@ -1,79 +1,117 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# ReactNativeBase
 
-# Getting Started
+## <mark style="background-color: white; color: red">Release Note v2.0</mark>
+- [x] React Native v0.71
+- [x] Added husky
+- [x] Deprecated screen -> module
+- [x] Renaming file dto, helper, reducer
+- [x] prettier, eslint by React Native
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+### Technology
+- [React Native](https://reactnative.dev/) - v0.71.2
+- [TypeScript](https://www.typescriptlang.org/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [React Navigation V6](https://redux-toolkit.js.org/)
+- [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/)
+- [Hermes Engine](https://hermesengine.dev/)
 
-## Step 1: Start the Metro Server
+### Structure
+- `src` Main source code
+    - `animation` include all animated as hook style <mark style="background-color: red; color: white">new</mark>
+    - `assets` include all assets like image, video, font, ...
+    - `components` include all components, exported by index.ts
+    - `configs` include all config link API Domain, userData,..., exported by index.ts
+    - `constants` include all const link Color declaration, Font declaration,...
+    - `dto` include all API, data input <mark style="background-color: red; color: white">new</mark>
+    - `helpers` include all common functions <mark style="background-color: red; color: white">new</mark>
+    - `hooks` include all hook functions like useDispatch, useSelector,...
+    - `log` include log functions <mark style="background-color: red; color: white">new</mark>
+    - `models` include models interface like API input, response,...
+    - `redux`
+        - `api` include api functions
+        - `reducer` include all reducer declaration
+        - `store.ts` include app store declaration
+    - `routes` include all screen routes
+        - `routes.ts` declare all route name and route params
+        - `type.ts` declare Navigation Props TypeScript
+    - `module` include all screen by module <mark style="background-color: red; color: white">new</mark>
+        - `components` include all component only used in module <mark style="background-color: red; color: white">new</mark>
+    - `styles` include all common styles
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+### Coding convention
+- Không sửa file .prettierrc.js
+- Đặt tên file, tên biến: 
+    + Component, Screen, Class, Component file, Screen file: [PascalCase]
+    + function, variable, file: [camelCase]
+    + dto, helper, reducer: `user.dto.ts` `api.helper.ts` `user.reducer.ts`
+- Tất cả assets phải được import vào trong folder assets, khai báo trong constants folder
 
-To start Metro, run the following command from the _root_ of your React Native project:
+### Đối với miniapp
 
-```bash
-# using npm
-npm start
+- Phải sử dụng `BaseImage` đối với tất cả hình ảnh sử dụng trong app 
+    + Tất cả assets (image, video, ...) phải được đặt trong assets folder assets/images/, assets/videos/, miniapp/miniapp1/assets/images
+    + Cấu hình đường dẫn của các assets trong file {...}/configs/appConfigs ASSET_IMAGE_PATH, ASSET_VIDEO_PATH,...
+    + ASSET_IMAGE_PATH của main app: ["/assets/src/assets/images/"]
+    + ASSET_IMAGE_PATH của mini app 1: ["/assets/src/miniapp/miniapp1/src/assets/images/"]
+    + Tất cả ảnh phải được thêm vào bằng file, nếu dùng ảnh từ thư viện phải thêm 1 cấu hình riêng đường dẫn cho file build trong {...}/configs/appConfigs
+    + Sử dụng component BaseImage cho tất cả các hình ảnh sử dụng trong app
 
-# OR using Yarn
-yarn start
-```
+- Hình ảnh khai báo bao gồm 
+    ```
+    let IMAGE = {
+        test: {
+            path: require('../assets/images/test.png'),
+            name: 'test.png',
+        },
+        test2: {
+            path: require('../assets/images/test2.png'),
+            name: 'test2.png',
+        },
+        test3: {
+            path: require('../assets/images/test3.png'),
+            name: 'test3.png',
+        },
+    };
+    ```
+- Hình ảnh khai báo trong constants/Image.ts phải export bằng funtion convertImage
+    ```
+    import { BUNDLE_DOMAIN, ASSET_IMAGE_PATH } from './../configs/appConfig';
 
-## Step 2: Start your Application
+    let IMAGE = {
+    test: {
+        path: require('../assets/images/test.png'),
+        name: 'test.png',
+    },
+    test2: {
+        path: require('../assets/images/test2.png'),
+        name: 'test2.png',
+    },
+    test3: {
+        path: require('../assets/images/test3.png'),
+        name: 'test3.png',
+    },
+    };
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+    let convertImage: Function = () => {
+    let result: Object = {};
+    for (const key in IMAGE) {
+        if (Object.prototype.hasOwnProperty.call(IMAGE, key)) {
+        let image = IMAGE[key];
+        if (__DEV__) {
+            Object.assign(result, { [key]: image.path });
+        } else {
+            Object.assign(result, {
+            [key]: BUNDLE_DOMAIN + ASSET_IMAGE_PATH + image.name,
+            });
+        }
+        }
+    }
+    return result;
+    };
 
-### For Android
+    IMAGE = convertImage();
 
-```bash
-# using npm
-npm run android
+    export default IMAGE;
 
-# OR using Yarn
-yarn android
-```
+    ```
 
-### For iOS
-
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
