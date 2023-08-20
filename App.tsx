@@ -1,11 +1,14 @@
-import {NavigationContainer} from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import {BottomBar} from './src/components/bottomBar';
-import {MainRoutes, MainStack} from './src/routes/routes';
-import Login from './src/module/login/Login';
-import Module1 from './src/module/module1/Module1';
-import Module2 from './src/module/module2/Module2';
+import { BottomBar } from './src/components/bottomBar';
+import { MainRoutes, MainStack } from './src/routes/routes';
 
+// Main module
+import Login from './src/module/login/Login';
+import ProfileModule from './src/module/profile/ProfileModule';
+import DashboardModule from './src/module/dashboard/DashboardModule';
+import HistoryModule from './src/module/history/HistoryModule';
+import DeliveryModule from './src/module/delivery/DeliveryModule';
 const App = () => {
   return (
     <NavigationContainer>
@@ -20,16 +23,24 @@ const App = () => {
             }}
           />
           <MainStack.Screen
-            name={MainRoutes.Module1}
-            component={Module1}
+            name={MainRoutes.History}
+            component={HistoryModule}
             options={{
               headerShown: false,
               animation: 'slide_from_right',
             }}
           />
           <MainStack.Screen
-            name={MainRoutes.Module2}
-            component={Module2}
+            name={MainRoutes.Dashboard}
+            component={DashboardModule}
+            options={{
+              headerShown: false,
+              animation: 'slide_from_right',
+            }}
+          />
+          <MainStack.Screen
+            name={MainRoutes.Profile}
+            component={ProfileModule}
             options={{
               headerShown: false,
               animation: 'slide_from_right',
@@ -37,6 +48,14 @@ const App = () => {
           />
           <MainStack.Screen
             name={MainRoutes.Login}
+            component={Login}
+            options={{
+              headerShown: false,
+              animation: 'slide_from_right',
+            }}
+          />
+          <MainStack.Screen
+            name={MainRoutes.Register}
             component={Login}
             options={{
               headerShown: false,

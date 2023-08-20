@@ -1,15 +1,15 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
-const Module2 = () => {
+const DeliveryModule = () => {
   return (
     <View style={styles.container}>
-      <Text>Module2</Text>
+      <Text>Giao hang</Text>
     </View>
   );
 };
 
-export default Module2;
+export default DeliveryModule;
 
 const styles = StyleSheet.create({
   container: {

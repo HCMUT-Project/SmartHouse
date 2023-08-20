@@ -1,28 +1,33 @@
+
+
 export interface UserModel {
-  code: boolean;
-  message: string;
-  message1: number;
-  calendarURL: string;
-  hdHomeURL: string;
-  fullName: string;
-  linkMFA: string;
-  isMFA: string;
+  code: string;
+  name: string;
+  phone: string;
+  status: string;
+}
+
+export interface LoginModel {
+  accessToken: string;
+  sharepointToken: string;
   refreshToken: string;
-  mapKey: string;
-  medicalDescriptionLink: string;
-  wfhRadius: string;
-  email: string;
-  dataELearning: {
-    userId: number;
-    userName: string;
-    name: string;
-    avarta: string;
-    email: string;
-    phone: string;
-    gender: string;
-    birthday: string;
-    location: string;
-  };
-  enableElearning: boolean;
-  elearningURL: string;
+  expiredTime: string;
+  user: UserModel;
+}
+export interface ConfigAppModel {
+  app: 'DELIVERY';
+  platform: 'android' | 'ios';
+  version: string;
+  build: number | string;
+  vnMessage: string;
+  enMessage: string;
+  store: string;
+  isWarning: boolean;
+  isRequire: boolean;
+  isHandleAccount: boolean;
+  api: string;
+}
+export interface RefreshTokenModel {
+  accessToken: string;
+  refreshToken: string
 }

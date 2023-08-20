@@ -1,6 +1,8 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {COLOR} from '../../constants';
+import {SIZE} from '@ddc-fis-hcm/react-native-sdk';
+import {textStyles} from '../../styles';
 
 interface NormalButtonProps {
   label: string;
@@ -30,7 +32,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   label: {
+    ...textStyles.mediumBold,
     color: COLOR.white,
-    paddingVertical: 20,
+    paddingVertical: SIZE[12],
   },
 });

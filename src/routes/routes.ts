@@ -2,15 +2,20 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 export enum MainRoutes {
   BottomBar = 'BottomBar',
-  Module1 = 'Module1',
-  Module2 = 'Module2',
+  History = 'History',
+  Dashboard = 'Dashboard',
+  Profile = 'Profile',
   Login = 'Login',
+  Register = 'Register',
 }
 
 export type MainStackParamList = {
   [MainRoutes.BottomBar]: undefined;
-  [MainRoutes.Module1]: undefined;
-  [MainRoutes.Module2]: undefined;
+  [MainRoutes.History]: undefined;
+  [MainRoutes.Dashboard]: undefined;
+  [MainRoutes.Profile]: undefined;
+  [MainRoutes.Register]: undefined;
+
   [MainRoutes.Login]: undefined;
 };
 

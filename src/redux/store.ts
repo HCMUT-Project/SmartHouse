@@ -1,5 +1,6 @@
 import {configureStore, ThunkAction, Action} from '@reduxjs/toolkit';
 import userReducer from './reducer/user.reducer';
+import snackBarReducer from './reducer/snackBarReducer';
 // import categoryReducer from './reducers/categorySlice';
 // import newsReducer from './reducers/newsSlice';
 // import reportReducer from './reducers/reportSlice';
@@ -7,6 +8,7 @@ import userReducer from './reducer/user.reducer';
 export const store = configureStore({
   reducer: {
     userReducer: userReducer,
+    snackBarReducer:snackBarReducer,
     // category: categoryReducer,
     // news: newsReducer,
     // report: reportReducer,

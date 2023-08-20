@@ -1,15 +1,15 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-const Module1 = () => {
+const ProfileModule = () => {
   return (
     <View style={styles.container}>
-      <Text>Module1</Text>
+      <Text>Ca nhan</Text>
     </View>
   );
 };
 
-export default Module1;
+export default ProfileModule;
 
 const styles = StyleSheet.create({
   container: {
