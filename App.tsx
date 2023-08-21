@@ -7,8 +7,10 @@ import { MainRoutes, MainStack } from './src/routes/routes';
 import Login from './src/module/login/Login';
 import ProfileModule from './src/module/profile/ProfileModule';
 import DashboardModule from './src/module/dashboard/DashboardModule';
-import HistoryModule from './src/module/history/HistoryModule';
-import DeliveryModule from './src/module/delivery/DeliveryModule';
+import HomeModule from './src/module/home/HomeModule';
+import Register from './src/module/login/Register';
+import ChangePwdModule from './src/module/login/ChangePassword';
+import AppInformation from './src/module/profile/AppInfomation';
 const App = () => {
   return (
     <NavigationContainer>
@@ -23,8 +25,8 @@ const App = () => {
             }}
           />
           <MainStack.Screen
-            name={MainRoutes.History}
-            component={HistoryModule}
+            name={MainRoutes.Home}
+            component={HomeModule}
             options={{
               headerShown: false,
               animation: 'slide_from_right',
@@ -56,7 +58,23 @@ const App = () => {
           />
           <MainStack.Screen
             name={MainRoutes.Register}
-            component={Login}
+            component={Register}
+            options={{
+              headerShown: false,
+              animation: 'slide_from_right',
+            }}
+          />
+          <MainStack.Screen
+            name={MainRoutes.ChangePwd}
+            component={ChangePwdModule}
+            options={{
+              headerShown: false,
+              animation: 'slide_from_right',
+            }}
+          />
+          <MainStack.Screen
+            name={MainRoutes.AppInformation}
+            component={AppInformation}
             options={{
               headerShown: false,
               animation: 'slide_from_right',

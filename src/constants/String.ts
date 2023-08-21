@@ -27,8 +27,7 @@ export const STRING = {
       'Đổi mật khẩu thành công, bạn có muốn lưu lại mật khẩu mới?',
   },
   bottomBar: {
-    delivery: 'Giao hàng',
-    history: 'Lịch sử',
+    home: 'Trang chủ',
     dashboard: 'Thống kê',
     profile: 'Cá nhân',
   },
