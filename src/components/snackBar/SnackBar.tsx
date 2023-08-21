@@ -1,19 +1,19 @@
-import {BaseImage} from '@ddc-fis-hcm/react-native-sdk';
-import React, {useCallback, useEffect, useState} from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   Dimensions,
   SafeAreaView,
   StyleSheet,
   Text,
   StatusBar,
+  Image
 } from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import {FONT} from '../../constants';
-import {useAppSelector} from '../../hooks';
+import { FONT } from '../../constants';
+import { useAppSelector } from '../../hooks';
 
 export enum SnackBarType {
   success,
@@ -91,15 +91,15 @@ export const SnackBar = (props: SnackBarProps) => {
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
-      transform: [{translateY: animatedHeight.value}],
+      transform: [{ translateY: animatedHeight.value }],
     };
   });
 
   return (
     <Animated.View
-      style={[animatedStyle, styles.container, {backgroundColor: color}]}>
+      style={[animatedStyle, styles.container, { backgroundColor: color }]}>
       <SafeAreaView style={styles.contentView}>
-        {icon !== '' && <BaseImage source={{uri: icon}} style={styles.icon} />}
+        {icon !== '' && <Image source={{ uri: icon }} style={styles.icon} />}
         <Text style={styles.message}>{message}</Text>
       </SafeAreaView>
     </Animated.View>
@@ -136,5 +136,5 @@ const styles = StyleSheet.create({
     zIndex: 999,
     alignItems: 'center',
   },
-  icon: {width: 20, height: 20},
+  icon: { width: 20, height: 20 },
 });

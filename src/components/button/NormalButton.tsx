@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {COLOR} from '../../constants';
-import {SIZE} from '@ddc-fis-hcm/react-native-sdk';
+import { SIZE } from '../../constants/Size';
 import {textStyles} from '../../styles';
 
 interface NormalButtonProps {

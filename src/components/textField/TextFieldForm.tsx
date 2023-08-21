@@ -7,13 +7,13 @@ import {
   KeyboardTypeOptions,
   Platform,
   TouchableOpacity,
+  Image
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {textStyles, viewStyles} from '../../styles';
 import {COLOR, IMAGE, STRING} from '../../constants';
-import {BaseImage, SIZE} from '@ddc-fis-hcm/react-native-sdk';
+import { SIZE } from '../../constants/Size';
 import {stringIsEmpty} from '../../constants/Function';
-import {ICON_CLOSE} from '@ddc-fis-hcm/react-native-sdk/react-native-sdk-source/styles';
 
 interface TextFieldFormProps {
   caption?: string;
@@ -145,14 +145,14 @@ export const TextFieldForm = ({
             value !== '' &&
             !disabled && (
               <TouchableOpacity style={styles.ic_btn} onPress={_onPressClear}>
-                <BaseImage source={{uri: ICON_CLOSE}} style={styles.icon} />
+                {/* <Image source={{uri: ICON_CLOSE}} style={styles.icon} /> */}
               </TouchableOpacity>
             )}
           {textType === 'password' && (
             <TouchableOpacity
               style={styles.ic_btn}
               onPress={() => setShowPwd(!isShowPwd)}>
-              <BaseImage
+              <Image
                 source={isShowPwd ? IMAGE.ic_close_eye : IMAGE.ic_eye}
                 style={styles.iconEye}
               />

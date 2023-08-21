@@ -1,7 +1,4 @@
-import {COLOR as libColor} from '@ddc-fis-hcm/react-native-sdk';
-
 export const COLOR = {
-  ...libColor,
   red: '#F5222D',
   light_red: '#D72D0B',
   yellow: '#FDAF17',
@@ -22,4 +19,5 @@ export const COLOR = {
   _262626: '#262626',
   _FA8C16: '#FA8C16',
   _FC8003: '#FC8003',
+  white: 'white'
 };

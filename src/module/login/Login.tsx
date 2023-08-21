@@ -10,6 +10,7 @@ import {
   Text,
   Platform,
   TouchableOpacity,
+  Image
 } from 'react-native';
 import { NormalButton } from '../../components/button';
 import { COLOR, IMAGE, STRING } from '../../constants';
@@ -21,7 +22,7 @@ import {
 } from '../../redux/reducer/user.reducer';
 import { MainRoutes } from '../../routes/routes';
 import { MainNavigationProp } from '../../routes/type';
-import { BaseImage, Checkbox, SIZE } from '@ddc-fis-hcm/react-native-sdk';
+import { SIZE } from '../../constants/Size';
 import { TextFieldForm } from '../../components/textField/TextFieldForm';
 import * as Keychain from 'react-native-keychain';
 import { stringIsEmpty } from '../../constants/Function';
@@ -149,7 +150,7 @@ const Login = ({ navigation }: MainNavigationProp) => {
         <ScrollView
           contentContainerStyle={styles.container}
           keyboardShouldPersistTaps={'handled'}>
-          <BaseImage source={IMAGE.logo} style={styles.logo} />
+          <Image source={IMAGE.logo} style={styles.logo} />
           <View>
             <TextFieldForm
               caption={STRING.username}
@@ -165,13 +166,13 @@ const Login = ({ navigation }: MainNavigationProp) => {
               error={errPwd}
             />
             <View style={styles.signUp}>
-              <Checkbox
+              {/* <Checkbox
                 style={styles.rmb_pwd_btn}
                 onPress={() => setIsRememberPwd(!isRememberPwd)}
                 isSelected={isRememberPwd}
                 color="warning"
                 label={STRING.rememberPwd}
-              />
+              /> */}
               {isRegisterAccount && (
                 <TouchableOpacity
                   onPress={() => navigation.navigate(MainRoutes.Register)}>

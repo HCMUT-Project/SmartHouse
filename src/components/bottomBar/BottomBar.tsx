@@ -8,22 +8,22 @@ import {
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
 import {STRING, IMAGE, COLOR, FONT} from '../../constants';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {MainRoutes} from '../../routes/routes';
-import {BaseImage, SIZE} from '@ddc-fis-hcm/react-native-sdk';
+import { SIZE } from '../../constants/Size';
 const Tab = createBottomTabNavigator();
 
 export const BottomBar = () => {
   return (
     <Tab.Navigator tabBar={props => <MyTabBar {...props} />}>
-      <Tab.Screen
+      {/* <Tab.Screen
         name={MainRoutes.Delivery}
         component={DeliveryModule}
         options={{
           headerShown: false,
           title: STRING.bottomBar.delivery,
         }}
-      />
+      /> */}
       <Tab.Screen
         name={MainRoutes.History}
         component={HistoryModule}
@@ -81,9 +81,9 @@ function MyTabBar({state, descriptors, navigation}: BottomTabBarProps) {
 
         let icon;
         switch (route.name) {
-          case MainRoutes.Delivery:
-            icon = IMAGE.ic_delivery;
-            break;
+          // case MainRoutes.Delivery:
+          //   icon = IMAGE.ic_delivery;
+          //   break;
           case MainRoutes.History:
             icon = IMAGE.ic_clock;
             break;
@@ -106,7 +106,7 @@ function MyTabBar({state, descriptors, navigation}: BottomTabBarProps) {
             onPress={onPress}
             onLongPress={onLongPress}
             style={styles.tabBarButtonContainer}>
-            <BaseImage
+            <Image
               source={icon}
               style={[
                 styles.tabBarIcon,

@@ -1,9 +1,9 @@
-import {BaseImage, SIZE} from '@ddc-fis-hcm/react-native-sdk';
 import React from 'react';
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, Text, TouchableOpacity,Image} from 'react-native';
 import {IMAGE, STRING} from '../../constants';
 import {textStyles} from '../../styles';
 import {orderType} from '../../models';
+import { SIZE } from '../../constants/Size';
 
 interface DetentionProps {
   onPressBtn: Function;
@@ -17,7 +17,7 @@ const Detention = ({onPressBtn, odType}: DetentionProps) => {
         onPress={() => {
           onPressBtn('cancel');
         }}>
-        <BaseImage source={IMAGE.ic_bill_cancel} style={styles.icon} />
+        <Image source={IMAGE.ic_bill_cancel} style={styles.icon} />
         <Text style={textStyles.normalMedium}>
           {odType === orderType.DELIVERY_ORDER_DELIVER
             ? STRING.btn.cancelDeliver
@@ -29,7 +29,7 @@ const Detention = ({onPressBtn, odType}: DetentionProps) => {
         onPress={() => {
           onPressBtn('appointment');
         }}>
-        <BaseImage source={IMAGE.ic_truck_orange} style={styles.icon} />
+        <Image source={IMAGE.ic_truck_orange} style={styles.icon} />
         <Text style={textStyles.normalMedium}>
           {odType === orderType.DELIVERY_ORDER_DELIVER
             ? STRING.btn.deliverAppointment

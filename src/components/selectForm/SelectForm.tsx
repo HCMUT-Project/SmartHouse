@@ -2,13 +2,17 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {textStyles, viewStyles} from '../../styles';
 import {COLOR, IMAGE, STRING} from '../../constants';
-import {
-  BaseImage,
-  Select,
-  SelectItemProps,
-  SIZE,
-} from '@ddc-fis-hcm/react-native-sdk';
+import { Select } from '../select/Select';
+import { SIZE } from '../../constants/Size';
 import {stringIsEmpty} from '../../constants/Function';
+
+export interface SelectItemProps {
+  id: number | string;
+  label: string;
+  data?: any;
+  onPress?: Function | undefined;
+}
+
 
 interface SelectFormProps {
   caption: string;
@@ -127,7 +131,7 @@ export const SelectForm = ({
                       ? STRING.btn.touchMe
                       : ''}
                   </Text>
-                  <BaseImage source={IMAGE.ic_d_arrow} style={styles.img} />
+                  <Image source={IMAGE.ic_d_arrow} style={styles.img} />
                 </TouchableOpacity>
               );
             }}

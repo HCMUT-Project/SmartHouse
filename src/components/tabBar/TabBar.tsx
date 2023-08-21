@@ -1,4 +1,3 @@
-import {SIZE, WIDTH_SCREEN} from '@ddc-fis-hcm/react-native-sdk';
 import React, {useEffect, useRef, useState} from 'react';
 import {
   NativeScrollEvent,
@@ -8,6 +7,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { SIZE } from '../../constants/Size';
+import { WIDTH_SCREEN } from '../../constants/Function';
 import {COLOR, FONT} from '../../constants';
 
 export interface TabBarProps {

@@ -1,10 +1,9 @@
-import {BaseImage, SIZE} from '@ddc-fis-hcm/react-native-sdk';
 import React from 'react';
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
-import {COLOR, IMAGE, STRING} from '../../constants';
-import {textStyles, viewStyles} from '../../styles';
-import {MaterialModel} from '../../models/order/Order';
-
+import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import { COLOR, IMAGE, STRING } from '../../constants';
+import { textStyles, viewStyles } from '../../styles';
+import { MaterialModel } from '../../models/order/Order';
+import { SIZE } from '../../constants/Size';
 interface MaterialProps extends MaterialModel {
   index: number;
   // recommentQuanti?: number;
@@ -22,7 +21,7 @@ const Material = ({
   onEdit,
   readOnly,
 }: // recommentQuanti,
-MaterialProps) => {
+  MaterialProps) => {
   return (
     <View style={styles.container}>
       <View style={viewStyles.flex1}>
@@ -40,7 +39,7 @@ MaterialProps) => {
               onDelete();
             }}
             style={styles.btn}>
-            <BaseImage source={IMAGE.ic_trash} style={styles.icon} />
+            <Image source={IMAGE.ic_trash} style={styles.icon} />
           </TouchableOpacity>
         )}
         {onEdit && !readOnly && (
@@ -49,7 +48,7 @@ MaterialProps) => {
             onPress={() => {
               onEdit();
             }}>
-            <BaseImage source={IMAGE.ic_edit} style={styles.icon} />
+            <Image source={IMAGE.ic_edit} style={styles.icon} />
           </TouchableOpacity>
         )}
       </View>
@@ -74,7 +73,7 @@ const styles = StyleSheet.create({
     ...textStyles.normalMedium,
     width: '100%',
   },
-  btn_view: {flexDirection: 'row', alignItems: 'center'},
+  btn_view: { flexDirection: 'row', alignItems: 'center' },
   btn: {
     padding: SIZE[10],
     paddingHorizontal: SIZE[4],

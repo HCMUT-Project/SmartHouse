@@ -15,14 +15,11 @@ import {
   TouchableWithoutFeedback,
   View,
   ViewStyle,
+  Image
 } from 'react-native';
 import {COLOR, IMAGE} from '../../constants';
-import {
-  BaseImage,
-  HEIGHT_WINDOW,
-  SIZE,
-  WIDTH_SCREEN,
-} from '@ddc-fis-hcm/react-native-sdk';
+import { SIZE } from '../../constants/Size';
+import { HEIGHT_WINDOW, WIDTH_SCREEN } from '../../constants/Function';
 import {textStyles, iconStyle, viewStyles} from '../../styles';
 import Animated, {
   useAnimatedStyle,
@@ -134,7 +131,7 @@ export const BottomSheet = React.forwardRef<BottomSheetRef, BottomSheetProps>(
                       <TouchableOpacity
                         style={styles.btn_close}
                         onPress={() => _close()}>
-                        <BaseImage
+                        <Image
                           style={iconStyle.icon14px}
                           source={IMAGE.ic_mul}
                         />
@@ -145,7 +142,7 @@ export const BottomSheet = React.forwardRef<BottomSheetRef, BottomSheetProps>(
                     </View>
                     {subTitle && (
                       <View style={styles.subtitle_view}>
-                        <BaseImage
+                        <Image
                           source={IMAGE.ic_i_light}
                           style={styles.ic_subTitle}
                         />

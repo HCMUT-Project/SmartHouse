@@ -1,4 +1,4 @@
-import {SIZE} from '@ddc-fis-hcm/react-native-sdk';
+import { SIZE } from '../constants/Size';
 import {StyleSheet, TextStyle} from 'react-native';
 import {COLOR, FONT} from '../constants';
 

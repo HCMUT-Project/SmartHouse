@@ -1,10 +1,9 @@
-import { BaseImage, SIZE } from '@ddc-fis-hcm/react-native-sdk';
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, Alert } from 'react-native';
+import { StyleSheet, View, Text, TextInput, Alert, Image } from 'react-native';
 import { COLOR, STRING } from '../../constants';
 import { textStyles, viewStyles } from '../../styles';
 import { MaterialModel } from '../../models/order/Order';
-
+import { SIZE } from '../../constants/Size';
 export interface ProductProps extends MaterialModel {
   changeDeliverQuanti: Function;
   readOnly?: boolean;
@@ -22,7 +21,7 @@ const Product = ({
 }: ProductProps) => {
   return (
     <View style={styles.container}>
-      <BaseImage source={image} style={styles.product_img} />
+      <Image source={image} style={styles.product_img} />
       <View style={viewStyles.flex1}>
         <Text style={textStyles.normal}>{name}</Text>
         <Text style={textStyles.note}>
@@ -79,7 +78,7 @@ const Product = ({
           )}
         {deliverQuanti && parseFloat(`${deliverQuanti}`) === 0 && (
           <Text style={[textStyles.small, { color: COLOR.yellow }]}>
-             {STRING.product.warning}{STRING.product.quantiIs0}
+            {STRING.product.warning}{STRING.product.quantiIs0}
           </Text>
         )}
       </View>

@@ -48,13 +48,13 @@
 
 ### Đối với miniapp
 
-- Phải sử dụng `BaseImage` đối với tất cả hình ảnh sử dụng trong app 
+- Phải sử dụng `Image` đối với tất cả hình ảnh sử dụng trong app 
     + Tất cả assets (image, video, ...) phải được đặt trong assets folder assets/images/, assets/videos/, miniapp/miniapp1/assets/images
     + Cấu hình đường dẫn của các assets trong file {...}/configs/appConfigs ASSET_IMAGE_PATH, ASSET_VIDEO_PATH,...
     + ASSET_IMAGE_PATH của main app: ["/assets/src/assets/images/"]
     + ASSET_IMAGE_PATH của mini app 1: ["/assets/src/miniapp/miniapp1/src/assets/images/"]
     + Tất cả ảnh phải được thêm vào bằng file, nếu dùng ảnh từ thư viện phải thêm 1 cấu hình riêng đường dẫn cho file build trong {...}/configs/appConfigs
-    + Sử dụng component BaseImage cho tất cả các hình ảnh sử dụng trong app
+    + Sử dụng component Image cho tất cả các hình ảnh sử dụng trong app
 
 - Hình ảnh khai báo bao gồm 
     ```

@@ -1,8 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import {BaseImage, BottomSheet, SIZE} from '@ddc-fis-hcm/react-native-sdk';
+import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
+import { BottomSheet } from '../bottomSheet';
+import { SIZE } from '../../constants/Size';
 import DatePicker from 'react-native-date-picker';
-import {convertDateTime} from '@ddc-fis-hcm/react-native-sdk';
+import { convertDateTime } from '../../constants/Function';
 import {stringIsEmpty} from '../../constants/Function';
 import {textStyles, viewStyles} from '../../styles';
 import {COLOR, IMAGE} from '../../constants';
@@ -122,7 +123,7 @@ export const DateTimePicker = ({
                   : 'dd-mm-yyyy'
                 : ''}
             </Text>
-            <BaseImage source={IMAGE.ic_calendar} style={styles.img} />
+            <Image source={IMAGE.ic_calendar} style={styles.img} />
           </View>
         </TouchableOpacity>
       </View>

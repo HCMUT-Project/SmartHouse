@@ -6,9 +6,11 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Image
 } from 'react-native';
+import { SIZE } from '../../constants/Size';
 import {COLOR, IMAGE} from '../../constants';
-import {BaseImage, SIZE, WIDTH_SCREEN} from '@ddc-fis-hcm/react-native-sdk';
+import { WIDTH_SCREEN } from '../../constants/Function';
 import {textStyles} from '../../styles';
 
 interface HeaderProps {
@@ -35,7 +37,7 @@ export const Header = ({
           onPress={() => {
             onPressBack();
           }}>
-          <BaseImage source={IMAGE.ic_back} style={styles.ic_back} />
+          <Image source={IMAGE.ic_back} style={styles.ic_back} />
         </TouchableOpacity>
       ) : (
         <View style={styles.btn_view} />

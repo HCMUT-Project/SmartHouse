@@ -5,9 +5,10 @@ import {
   TouchableOpacity,
   View,
   ViewStyle,
+  Image
 } from 'react-native';
 import {COLOR} from '../../constants';
-import {BaseImage, SIZE} from '@ddc-fis-hcm/react-native-sdk';
+import { SIZE } from '../../constants/Size';
 import {textStyles} from '../../styles';
 
 interface BottomViewProps {
@@ -42,7 +43,7 @@ export const BottomView = ({style, buttons}: BottomViewProps) => {
                 : styles.btn
             }>
             {item.icon && (
-              <BaseImage source={item.icon} style={styles.btn_icon} />
+              <Image source={item.icon} style={styles.btn_icon} />
             )}
             <Text
               style={

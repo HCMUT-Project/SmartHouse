@@ -8,23 +8,20 @@ import {
   View,
 } from 'react-native';
 import {IMAGE, STRING} from '../../constants';
-import {
-  SIZE,
-  SelectItemProps,
-  WIDTH_SCREEN,
-} from '@ddc-fis-hcm/react-native-sdk';
+import { SIZE } from '../../constants/Size';
+import { WIDTH_SCREEN } from '../../constants/Function';
 import {BottomView} from '../bottomView';
 import Material from './Material';
 import {MaterialModel, MaterialsType} from '../../models/order/Order';
 import {TextFieldForm} from '../textField/TextFieldForm';
-import {SelectForm} from '../select';
+import {SelectForm} from '../selectForm';
 import {stringIsEmpty} from '../../constants/Function';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {getMaterialsAction} from '../../redux/reducer/delivery/materials.reducer';
 import {Status} from '../../models';
 import {textStyles} from '../../styles';
 import {sum} from '../../module/order/OrderDetailModule';
-
+import { SelectItemProps } from '../selectForm';
 export interface ListMaterialsProps {
   readOnly?: boolean;
   onConfirm: Function;

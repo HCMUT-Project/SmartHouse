@@ -1,4 +1,4 @@
-import {SIZE} from '@ddc-fis-hcm/react-native-sdk';
+import { SIZE } from '../constants/Size';
 import {ImageStyle, Platform, ViewStyle} from 'react-native';
 
 interface ViewStylesProps {
