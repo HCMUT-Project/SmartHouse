@@ -26,7 +26,7 @@ NormalButton.defaultProps = {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLOR.primary,
+    backgroundColor: COLOR._262626,
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',

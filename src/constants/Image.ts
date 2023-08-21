@@ -6,7 +6,6 @@ export const IMAGE = {
     ic_chicken: require('../assets/images/ic_chicken.png'),
     ic_close_eye: require('../assets/images/ic_close_eye.png'),
     ic_eye: require('../assets/images/ic_eye.png'),
-    logo: require('../assets/images/logo.png'),
     banner: require('../assets/images/banner.png'),
     ic_back: require('../assets/images/ic_back.png'),
     ic_truck: require('../assets/images/ic_truck.png'),
@@ -56,5 +55,6 @@ export const IMAGE = {
     ic_checkbox_checked: require('../assets/images/ic_checkbox_checked.png'),
     ic_checkbox_disable: require('../assets/images/ic_checkbox_disable.png'),
     ic_checkbox_subtract: require('../assets/images/ic_checkbox_subtract.png'),
+    logo: require('../assets/images/1024.png'),
   };
   

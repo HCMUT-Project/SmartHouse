@@ -37,9 +37,8 @@ const Login = ({ navigation }: MainNavigationProp) => {
   const message = useAppSelector(state => state.userReducer.message);
   const loginData = useAppSelector(state => state.userReducer.loginData);
 
-  const [isRegisterAccount, setIsRegisterAccount] = useState(false);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('thanhtuanvp2002@gmail.com');
+  const [password, setPassword] = useState('12345678');
   const [errUsername, setErrUsername] = useState('');
   const [errPwd, setErrPwd] = useState('');
 
@@ -60,11 +59,14 @@ const Login = ({ navigation }: MainNavigationProp) => {
   };
 
   const onPressLogin = () => {
+    navigation.navigate(MainRoutes.BottomBar)
+
+    return
     let isValid = _onValidate();
     if (isValid) {
       dispatch(
         loginAction({
-          username,
+          email: username,
           password,
         }),
       );
@@ -99,7 +101,7 @@ const Login = ({ navigation }: MainNavigationProp) => {
       ) {
         dispatch(
           loginAction({
-            username: credentials.username,
+            email: credentials.username,
             password: credentials.password,
           }),
         );
@@ -111,13 +113,16 @@ const Login = ({ navigation }: MainNavigationProp) => {
   const savePwd = useCallback(async (usr: string, pwd: string) => {
     await Keychain.setGenericPassword(usr, pwd);
   }, []);
-
+  useEffect(() => {
+    getCredentials()
+  }, [])
   useEffect(() => {
     if (status === Status.success) {
       if (isRememberPwd) {
         savePwd(username, password);
       }
       dispatch(setSnackBarMessage('Đăng nhập thành công', 'success'));
+      navigation.navigate(MainRoutes.BottomBar)
     }
     if (status === Status.error && message !== '') {
       Alert.alert(STRING.popup.error, message, [
@@ -166,19 +171,16 @@ const Login = ({ navigation }: MainNavigationProp) => {
               error={errPwd}
             />
             <View style={styles.signUp}>
-              {/* <Checkbox
-                style={styles.rmb_pwd_btn}
-                onPress={() => setIsRememberPwd(!isRememberPwd)}
-                isSelected={isRememberPwd}
-                color="warning"
-                label={STRING.rememberPwd}
-              /> */}
-              {isRegisterAccount && (
-                <TouchableOpacity
-                  onPress={() => navigation.navigate(MainRoutes.Register)}>
-                  <Text style={styles.signUpLabel}>{STRING.signUp.signUp}</Text>
-                </TouchableOpacity>
-              )}
+              <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => {
+                setIsRememberPwd(!isRememberPwd)
+              }}>
+                <Image source={isRememberPwd ? IMAGE.ic_checkbox_checked : IMAGE.ic_checkbox} style={{ width: 20, height: 20, resizeMode: 'cover', margin: 3 }}></Image>
+                <Text style={styles.signUpLabel}>{STRING.rememberPwd}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => navigation.navigate(MainRoutes.Register)}>
+                <Text style={styles.signUpLabel}>{STRING.signUp.signUp}</Text>
+              </TouchableOpacity>
             </View>
             <NormalButton
               onPress={onPressLogin}
@@ -204,9 +206,10 @@ const styles = StyleSheet.create({
     backgroundColor: COLOR.white,
   },
   logo: {
-    width: '50%',
+    width: 200,
     alignSelf: 'center',
-    top: Dimensions.get('screen').height * 0.05,
+    height: 150,
+    top: 30,
     position: 'absolute',
     resizeMode: 'contain',
   },

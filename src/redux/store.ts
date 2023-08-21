@@ -1,17 +1,15 @@
 import {configureStore, ThunkAction, Action} from '@reduxjs/toolkit';
 import userReducer from './reducer/user.reducer';
 import snackBarReducer from './reducer/snackBarReducer';
-// import categoryReducer from './reducers/categorySlice';
-// import newsReducer from './reducers/newsSlice';
-// import reportReducer from './reducers/reportSlice';
-
+import changePwdReducer from './reducer/profile/changePwd.reducer';
+import userSignUpReducer from './reducer/profile/user.signUp.reducer';
 export const store = configureStore({
   reducer: {
     userReducer: userReducer,
     snackBarReducer:snackBarReducer,
-    // category: categoryReducer,
-    // news: newsReducer,
-    // report: reportReducer,
+    changePwdReducer,
+    userSignUpReducer
+
   },
 });
 
