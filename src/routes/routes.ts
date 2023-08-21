@@ -8,7 +8,8 @@ export enum MainRoutes {
   Login = 'Login',
   Register = 'Register',
   ChangePwd = 'ChangePwd',
-  AppInformation = 'AppInformation'
+  AppInformation = 'AppInformation',
+  HomeDetail = 'HomeDetail'
 }
 
 export type MainStackParamList = {
@@ -21,6 +22,7 @@ export type MainStackParamList = {
   [MainRoutes.Login]: undefined;
   [MainRoutes.ChangePwd]: undefined;
   [MainRoutes.AppInformation]: undefined;
+  [MainRoutes.HomeDetail]: { name: string };
 };
 
 export const MainStack = createNativeStackNavigator<MainStackParamList>();

@@ -13,6 +13,7 @@ import ChangePwdModule from './src/module/login/ChangePassword';
 import AppInformation from './src/module/profile/AppInfomation';
 import { useAppSelector } from './src/hooks';
 import { stringIsEmpty } from './src/constants/Function';
+import HomeDetail from './src/module/home/HomeDetailsModule';
 const App = () => {
   const data = useAppSelector(state => state.userReducer.loginData);
   const [isSignedIn, setIsSignedIn] = React.useState(false);
@@ -72,6 +73,14 @@ const App = () => {
           <MainStack.Screen
             name={MainRoutes.AppInformation}
             component={AppInformation}
+            options={{
+              headerShown: false,
+              animation: 'slide_from_right',
+            }}
+          />
+          <MainStack.Screen
+            name={MainRoutes.HomeDetail}
+            component={HomeDetail}
             options={{
               headerShown: false,
               animation: 'slide_from_right',
