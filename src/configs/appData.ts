@@ -1,7 +1,9 @@
 export const userData = {
-  username: '',
+  name: '',
   refreshToken: '',
-  expiredTime: '',
+  email: '',
   accessToken: '',
-  tokenFirebase: '',
+  phoneNumber: '',
+  id: "",
+  avatar: "",
 };

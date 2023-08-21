@@ -19,7 +19,7 @@ import { Status } from '../../models';
 import {
   logOutAction,
   loginAction,
-} from '../../redux/reducer/user.reducer';
+} from '../../redux/reducer/profile/user.reducer';
 import { MainRoutes } from '../../routes/routes';
 import { MainNavigationProp } from '../../routes/type';
 import { SIZE } from '../../constants/Size';
@@ -59,9 +59,9 @@ const Login = ({ navigation }: MainNavigationProp) => {
   };
 
   const onPressLogin = () => {
-    navigation.navigate(MainRoutes.BottomBar)
+    // navigation.navigate(MainRoutes.BottomBar)
 
-    return
+    // return
     let isValid = _onValidate();
     if (isValid) {
       dispatch(

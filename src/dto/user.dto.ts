@@ -9,6 +9,7 @@ export interface ChangePwdDTO {
 export interface SignUpDTO {
   phoneNumber: string;
   password: string;
-  fullName: string;
-  confirmPassword: string;
+  email: string;
+  name: string;
+  photoURL: string
 }

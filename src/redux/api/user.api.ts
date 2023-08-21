@@ -6,18 +6,18 @@ import { ApiModel } from '../reducer/profile/user.reducer';
 export async function loginAPI({
   ...input
 }: LoginDTO): Promise<HttpData<LoginModel>> {
-  const result = await post('auth/login', input);
+  const result = await post('user/login', input);
   if (result?.error) {
     return result;
   }
-  if (result.data?.resultCode !== 1) {
+  if (result.data?.message !== 'success') {
     return {
       error: 'api',
       message: result.data?.message,
     };
   }
   return {
-    data: result.data?.data as LoginModel,
+    data: result.data as LoginModel,
     message: result?.data?.message,
   };
 }
@@ -39,11 +39,11 @@ export async function changePwdAPI({
   };
 }
 export async function signUpAPI(input: SignUpDTO): Promise<HttpData<ApiModel>> {
-  const result = await post('auth/register-account', input);
+  const result = await post('user/signup', input);
   if (result?.error) {
     return result;
   }
-  if (result.data?.resultCode !== 1) {
+  if (result.data?.message !== 'success') {
     return {
       error: 'Api',
       message: result?.data?.message,

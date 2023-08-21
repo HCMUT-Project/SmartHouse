@@ -22,16 +22,17 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { Status } from '../../models';
 
 import DeviceInfo from 'react-native-device-info';
+import { API_DOMAIN } from '../../configs';
 
 interface ProfileModuleProps extends MainNavigationProp<MainRoutes.Profile> { }
 const ProfileModule = ({ navigation }: ProfileModuleProps) => {
   const dispatch = useAppDispatch();
 
   const loginData = useAppSelector(state => state.userReducer.loginData);
-  const [isRegisterAccount, setIsRegisterAccount] = useState(false);
+
   const _onPressProfileButton = (screenNavigate: any) => {
     if (screenNavigate === MainRoutes.ChangePwd) {
-      navigation.navigate(screenNavigate, { isFirstChange: false });
+      navigation.navigate(screenNavigate);
     } else {
       navigation.navigate(screenNavigate);
     }
@@ -57,11 +58,11 @@ const ProfileModule = ({ navigation }: ProfileModuleProps) => {
       <View style={styles.body}>
         <ScrollView contentContainerStyle={styles.container}>
           <View style={styles.profile_view}>
-            <Image source={IMAGE.no_img} style={styles.avatar} />
+            <Image source={loginData?.avatar ? { uri: API_DOMAIN + "/" + loginData?.avatar } : IMAGE.no_img} style={styles.avatar} />
             <View style={styles.profile_info}>
-              <Text style={textStyles.medium}>{loginData?.user.name}</Text>
+              <Text style={textStyles.medium}>{loginData?.name}</Text>
               <Text style={[textStyles.normal, { color: COLOR._7A7A7A }]}>
-                {loginData?.user.phone}
+                {loginData?.phoneNumber}
               </Text>
               {/* <Text
                 style={[

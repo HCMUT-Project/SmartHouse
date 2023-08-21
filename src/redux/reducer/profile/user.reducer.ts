@@ -12,7 +12,7 @@ export interface ApiState {
 }
 export const initState: ApiState = {
   status: Status.idle,
-  message: '',
+  message: ''
 };
 export interface ApiModel {
   error: boolean | string | undefined;
@@ -42,10 +42,11 @@ export const userSlice = createSlice({
       state.status = Status.idle;
       state.loginData = undefined;
       userData.accessToken = '';
-      userData.sharepointToken = '';
-      userData.roles = [];
-      userData.refreshToken = '';
-      userData.expiredTime = ''
+      userData.name = '';
+      userData.email = '';
+      userData.phoneNumber = '';
+      userData.id = '';
+      userData.avatar = '';
     },
   },
 });
@@ -66,10 +67,11 @@ export const loginAction =
       } else {
         if (result.data) {
           userData.accessToken = result.data?.accessToken;
-          userData.sharepointToken = result.data?.sharepointToken;
-          userData.roles = result.data?.roles;
-          userData.refreshToken = result.data?.refreshToken;
-          userData.expiredTime = result.data?.expiredTime;
+          userData.name = result.data?.name;
+          userData.email = result.data?.email;
+          userData.phoneNumber = result.data?.phoneNumber;
+          userData.id = result.data?.id;
+          userData.avatar = result.data?.avatar;
         }
         dispatch(
           userSlice.actions.login({

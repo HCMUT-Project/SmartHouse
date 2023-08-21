@@ -11,11 +11,24 @@ import HomeModule from './src/module/home/HomeModule';
 import Register from './src/module/login/Register';
 import ChangePwdModule from './src/module/login/ChangePassword';
 import AppInformation from './src/module/profile/AppInfomation';
+import { useAppSelector } from './src/hooks';
+import { stringIsEmpty } from './src/constants/Function';
 const App = () => {
+  const data = useAppSelector(state => state.userReducer.loginData);
+  const [isSignedIn, setIsSignedIn] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!stringIsEmpty(data?.accessToken)) {
+      setIsSignedIn(true)
+    } else {
+      setIsSignedIn(false)
+    }
+  }, [data]);
+
   return (
     <NavigationContainer>
       <MainStack.Navigator initialRouteName={MainRoutes.Login}>
-        <>
+        {isSignedIn ? (<>
           <MainStack.Screen
             name={MainRoutes.BottomBar}
             component={BottomBar}
@@ -49,22 +62,6 @@ const App = () => {
             }}
           />
           <MainStack.Screen
-            name={MainRoutes.Login}
-            component={Login}
-            options={{
-              headerShown: false,
-              animation: 'slide_from_right',
-            }}
-          />
-          <MainStack.Screen
-            name={MainRoutes.Register}
-            component={Register}
-            options={{
-              headerShown: false,
-              animation: 'slide_from_right',
-            }}
-          />
-          <MainStack.Screen
             name={MainRoutes.ChangePwd}
             component={ChangePwdModule}
             options={{
@@ -80,7 +77,25 @@ const App = () => {
               animation: 'slide_from_right',
             }}
           />
-        </>
+        </>)
+          : (<>
+            <MainStack.Screen
+              name={MainRoutes.Login}
+              component={Login}
+              options={{
+                headerShown: false,
+                animation: 'slide_from_right',
+              }}
+            />
+            <MainStack.Screen
+              name={MainRoutes.Register}
+              component={Register}
+              options={{
+                headerShown: false,
+                animation: 'slide_from_right',
+              }}
+            />
+          </>)}
       </MainStack.Navigator>
     </NavigationContainer>
   );

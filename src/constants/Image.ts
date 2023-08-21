@@ -1,5 +1,6 @@
 export const IMAGE = {
     ic_delivery: require('../assets/images/ic_delivery.png'),
+    ic_home: require('../assets/images/home.png'),
     ic_clock: require('../assets/images/ic_clock.png'),
     ic_piechart: require('../assets/images/ic_piechart.png'),
     ic_profile: require('../assets/images/ic_profile.png'),

@@ -32,8 +32,10 @@ const Register = ({ navigation }: MainNavigationProp) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPwd] = useState('');
   const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
   const [errPhoneNumber, setErrPhoneNumber] = useState('');
   const [errFullName, setErrFullName] = useState('');
+  const [errEmail, setErrEmail] = useState('');
   const [errPwd, setErrPwd] = useState('');
   const [errConfirmPwd, setErrConfirmPwd] = useState('');
 
@@ -49,6 +51,13 @@ const Register = ({ navigation }: MainNavigationProp) => {
       setErrFullName('');
     }
     setFullName(value);
+  };
+
+  const onChangeEmail = (value: string) => {
+    if (value.length > 0 && errEmail.length > 0) {
+      setErrEmail('');
+    }
+    setEmail(value);
   };
 
   const onChangePassword = (value: string) => {
@@ -68,10 +77,11 @@ const Register = ({ navigation }: MainNavigationProp) => {
     if (isValid) {
       dispatch(
         signUpAction({
-          phoneNumber,
-          password,
-          fullName: "string",
-          confirmPassword: password
+          "email": email,
+          "password": password,
+          "name": fullName,
+          "photoURL": "",
+          "phoneNumber": phoneNumber
         }),
       );
     }
@@ -87,6 +97,10 @@ const Register = ({ navigation }: MainNavigationProp) => {
     }
     if (fullName.length === 0) {
       setErrFullName(`${STRING.signUp.fullName} ${STRING.valid.notBeBlank}`);
+      isValid = false;
+    }
+    if (email.length === 0) {
+      setErrEmail(`${STRING.signUp.email} ${STRING.valid.notBeBlank}`);
       isValid = false;
     }
     if (confirmPassword.length === 0) {
@@ -140,6 +154,13 @@ const Register = ({ navigation }: MainNavigationProp) => {
         <ScrollView
           keyboardShouldPersistTaps={'handled'}>
           <View>
+            <TextFieldForm
+              caption={STRING.signUp.email}
+              value={phoneNumber}
+              keyboardType={'phone-pad'}
+              onChangeText={onChangeEmail}
+              error={errPhoneNumber}
+            />
             <TextFieldForm
               caption={STRING.signUp.phoneNumber}
               value={phoneNumber}

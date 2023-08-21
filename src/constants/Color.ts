@@ -19,5 +19,6 @@ export const COLOR = {
   _262626: '#262626',
   _FA8C16: '#FA8C16',
   _FC8003: '#FC8003',
+  _E1EDFF:'#E1EDFF',
   white: 'white'
 };

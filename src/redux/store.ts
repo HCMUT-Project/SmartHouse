@@ -1,5 +1,5 @@
 import {configureStore, ThunkAction, Action} from '@reduxjs/toolkit';
-import userReducer from './reducer/user.reducer';
+import userReducer from './reducer/profile/user.reducer';
 import snackBarReducer from './reducer/snackBarReducer';
 import changePwdReducer from './reducer/profile/changePwd.reducer';
 import userSignUpReducer from './reducer/profile/user.signUp.reducer';

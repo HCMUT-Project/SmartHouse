@@ -13,6 +13,7 @@ export const STRING = {
     signUp: 'Đăng ký',
     phoneNumber: 'Số điện thoại',
     fullName: 'Họ và tên',
+    email: 'Email'
   },
   changePwd: {
     newPwd: 'Mật khẩu mới',

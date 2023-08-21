@@ -1,18 +1,18 @@
 
-
 export interface UserModel {
-  code: string;
+  id: string;
+  avatar: string;
   name: string;
-  phone: string;
-  status: string;
+  email: string;
+  phoneNumber: string;
 }
-
 export interface LoginModel {
   accessToken: string;
-  sharepointToken: string;
-  refreshToken: string;
-  expiredTime: string;
-  user: UserModel;
+  id: string;
+  avatar: string;
+  name: string;
+  email: string;
+  phoneNumber: string;
 }
 export interface ConfigAppModel {
   app: 'DELIVERY';
