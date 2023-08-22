@@ -18,14 +18,14 @@ const DashboardModule = () => {
     {
       data: [Math.random() * 24, Math.random() * 24, Math.random() * 24, Math.random() * 24, Math.random() * 24, Math.random() * 24, Math.random() * 24],
       strokeWidth: 1,
-      color: (opacity = 1) => getRandomColor()
+      color: (opacity = 1) => 'blue'
     }
   ]);
   const [dataSetLight, setDataSetLight] = useState<any[]>([
     {
       data: [Math.random() * 24, Math.random() * 24, Math.random() * 24, Math.random() * 24, Math.random() * 24, Math.random() * 24, Math.random() * 24],
       strokeWidth: 1,
-      color: (opacity = 1) => getRandomColor()
+      color: (opacity = 1) => 'blue'
     }
   ]);
   const [legend, setLegend] = useState<string[]>(['Phòng khách']);
@@ -72,7 +72,7 @@ const DashboardModule = () => {
             }
           }}
         />
-        <View>
+        <View style={{ marginTop: 12 }}>
           <Text style={textStyles.normalBold}>Thời gian sử dụng đèn</Text>
           {dataSetLight.length > 0 &&
             <LineChart

@@ -1,20 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Switch, StyleSheet, Text, View, SafeAreaView, FlatList, Image, TouchableOpacity, Platform } from 'react-native';
 import { COLOR, IMAGE, SIZE, WIDTH_SCREEN } from '../../constants';
 import { textStyles } from '../../styles';
-import { userData } from '../../configs';
 import { MainNavigationProp } from '../../routes/type';
 import { MainRoutes } from '../../routes/routes';
 import { Header } from '../../components/header';
-import { stringIsEmpty } from '../../constants/Function';
+import { objectIsNull, stringIsEmpty } from '../../constants/Function';
+import { useFocusEffect } from '@react-navigation/native';
+import { getRoomDataAction, getRoomResetAction } from '../../redux/reducer/device/deviceReducer';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { Status } from '../../models';
+import { setSnackBarMessage } from '../../redux/reducer/snackBarReducer';
 
 const HomeDetail = ({ navigation, route }: MainNavigationProp<MainRoutes.HomeDetail>) => {
+  const dispatch = useAppDispatch();
+
+  const status = useAppSelector(state => state.deviceReducer.status);
+  const message = useAppSelector(state => state.deviceReducer.message);
+  const messageLed = useAppSelector(state => state.deviceReducer.messageLed);
+  const dataAir = useAppSelector(state => state.deviceReducer.dataAir);
+  const dataLed = useAppSelector(state => state.deviceReducer.dataLed);
 
   const [data, setData] = useState([
     {
       text: 'Phòng khách',
       airCond: {
-        isOn: true,
+        isOn: false,
         value: '20'
       },
       light: {
@@ -68,6 +79,53 @@ const HomeDetail = ({ navigation, route }: MainNavigationProp<MainRoutes.HomeDet
     },
   ])
 
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch(getRoomDataAction());
+      return () => {
+        dispatch(getRoomResetAction());
+      };
+    }, [dispatch]),
+  );
+
+  useEffect(() => {
+    console.log(dataAir, " ahihhi")
+    if (status !== Status.loading) {
+      let newData = data.map((elem, index) => {
+        if (index == 0) {
+          let device = elem
+          device.airCond.isOn = dataAir == '1'
+          return device
+        }
+        return elem
+      })
+      setData(newData)
+    }
+  }, [dataAir])
+  useEffect(() => {
+    if (status != Status.loading) {
+      let newData = data.map((elem, index) => {
+        if (index == 0) {
+          let device = elem
+          device.light.isOn = dataLed == '1'
+          return device
+        }
+        return elem
+      })
+      setData(newData)
+    }
+  }, [dataLed])
+
+  useEffect(() => {
+    if (status == Status.error) {
+      if (message && !stringIsEmpty(message)) {
+        setSnackBarMessage(message, 'error')
+      }
+      if (messageLed && !stringIsEmpty(messageLed)) {
+        setSnackBarMessage(messageLed, 'error')
+      }
+    }
+  }, [message, messageLed])
   const _onPress = (idPress: number, type: 'light' | 'air') => {
     let newData = data.map((elem, index) => {
       if (index === idPress) {

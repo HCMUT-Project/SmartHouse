@@ -21,11 +21,11 @@ const AppInformation = ({ navigation }: AppInformationProps) => {
           navigation.goBack();
         }}
       />
-      <View style={{ backgroundColor: COLOR._F2F5F8 }}>
+      <View style={{ backgroundColor: COLOR.white }}>
         <Image source={IMAGE.logo} style={styles.banner} />
         <View style={{ alignItems: 'center' }}>
           <Text style={textStyles.mediumBold}>Smart House</Text>
-          <Text>Phiên bản {DeviceInfo.getVersion()}</Text>
+          <Text style={textStyles.normal}>Phiên bản {DeviceInfo.getVersion()}</Text>
         </View>
       </View>
       <View style={styles.content}>

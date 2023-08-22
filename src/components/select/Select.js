@@ -1,7 +1,7 @@
 import React, { createRef, useEffect, useState } from 'react';
 import { Image, Platform, StyleSheet, Text, View, TouchableOpacity, } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, } from 'react-native-reanimated';
-import { COLOR , SIZE,HEIGHT_SCREEN} from '../../constants';
+import { COLOR, SIZE, HEIGHT_SCREEN } from '../../constants';
 import { BottomSheet } from '../bottomSheet';
 import Skeleton from './Skeleton';
 // CONSTANT
@@ -165,17 +165,17 @@ export const Select = (props) => {
         setSelectedLabel(_label);
     }, [selectedItem, isReload]);
     return (<View style={containerStyle}>
-      {selectView ? (selectView({ selectedLabel, onSelect })) : (<TouchableOpacity onPress={onSelect} style={[
-                styles.container,
-                {
-                    borderColor: borderColor,
-                    minHeight: size * 3.5,
-                    backgroundColor: props.disable
-                        ? COLOR_DISABLE
-                        : COLOR_BG_BACKGROUND,
-                },
-            ]}>
-          <View style={[
+        {selectView ? (selectView({ selectedLabel, onSelect })) : (<TouchableOpacity onPress={onSelect} style={[
+            styles.container,
+            {
+                borderColor: borderColor,
+                minHeight: size * 3.5,
+                backgroundColor: props.disable
+                    ? COLOR_DISABLE
+                    : COLOR_BG_BACKGROUND,
+            },
+        ]}>
+            <View style={[
                 styles.inputContainer,
                 {
                     backgroundColor: props.disable
@@ -183,46 +183,49 @@ export const Select = (props) => {
                         : COLOR_BG_BACKGROUND,
                 },
             ]}>
-            <Animated.Text style={animatedLabelStyles}>{label}</Animated.Text>
-            <Text numberOfLines={1} style={[
-                styles.selectedItemText,
-                {
-                    lineHeight: size * 1.25,
-                    fontSize: size,
-                    paddingTop: size * 0.75,
-                    color: COLOR_TEXT,
-                },
-            ]}>
-              {selectedLabel}
-            </Text>
-          </View>
+                <Animated.Text style={animatedLabelStyles}>{label}</Animated.Text>
+                <Text numberOfLines={1} style={[
+                    styles.selectedItemText,
+                    {
+                        lineHeight: size * 1.25,
+                        fontSize: size,
+                        paddingTop: size * 0.75,
+                        color: COLOR_TEXT,
+                    },
+                ]}>
+                    {selectedLabel}
+                </Text>
+            </View>
 
-          <View style={styles.iconArrowDownContainer}>
-            <Image source={{ uri: ARROW_DOWN_ICON }} style={{
-                width: size,
-                height: size,
-            }}/>
-          </View>
+            <View style={styles.iconArrowDownContainer}>
+                <Image source={{ uri: ARROW_DOWN_ICON }} style={{
+                    width: size,
+                    height: size,
+                }} />
+            </View>
         </TouchableOpacity>)}
-      {error && error !== '' ? <Text style={styles.error}>{error}</Text> : null}
-      <BottomSheet onChangeTextSearchBox={props.onChangeTextSearchBox} isShowHeaderRight={multiple || isRequiredConfirm} onPressRightView={() => {
+        {error && error !== '' ? <Text style={styles.error}>{error}</Text> : null}
+        <BottomSheet onChangeTextSearchBox={props.onChangeTextSearchBox} isShowHeaderRight={multiple || isRequiredConfirm} onPressRightView={() => {
             var _a;
             props.onConfirm && props.onConfirm(selectedItem);
             (_a = bottomSheet.current) === null || _a === void 0 ? void 0 : _a.close();
         }} {...props} ref={bottomSheet} searchBox={searchBox} onClose={onClose} label={label}>
-        {props.loading && (<Skeleton direction="column" numberOfItems={5} style={styles.skeleton}/>)}
-        {!props.loading && (!items || items.length <= 0) && (<View style={{
-                flex: 1,
-                alignItems: 'center',
-                justifyContent: 'center',
-                minHeight: HEIGHT_SCREEN * 0.3,
-            }}>
-            <Text style={{ color: COLOR.typoSubtitle }}>
-              Không tìm thấy thông tin {label}
-            </Text>
-          </View>)}
-        <SelectItem data={items} size={props.size} selectedItem={selectedItem} onSelectItem={(_value) => _onSelectItem(_value)}/>
-      </BottomSheet>
+            {props.loading && (<Skeleton direction="column" numberOfItems={5} style={styles.skeleton} />)}
+            {!props.loading && (!items || items.length <= 0) && (
+                <View style={{
+                    flex: 1,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    minHeight: HEIGHT_SCREEN * 0.3,
+                }}>
+                    <Text style={{ color: COLOR.typoSubtitle }}>
+                        Không tìm thấy thông tin {label}
+                    </Text>
+                </View>)}
+            <View style={{ flex: 1 }}>
+                <SelectItem data={items} size={props.size} selectedItem={selectedItem} onSelectItem={(_value) => _onSelectItem(_value)} />
+            </View>
+        </BottomSheet>
     </View>);
 };
 const SelectItem = ({ data, size, onSelectItem, selectedItem, }) => {
@@ -235,28 +238,28 @@ const SelectItem = ({ data, size, onSelectItem, selectedItem, }) => {
     };
     if (data.length > 0) {
         return (<View>
-        {data.map((ele, index) => {
+            {data.map((ele, index) => {
                 let isSelected = selectedList.find(_ => (_ === null || _ === void 0 ? void 0 : _.id) === (ele === null || ele === void 0 ? void 0 : ele.id));
                 return (<TouchableOpacity key={index} style={[
-                        styles.itemContainer,
-                        isSelected && {
-                            backgroundColor: COLOR_SELECTED_ITEM_BACKGROUND,
-                        },
-                    ]} onPress={() => {
-                        onPress(ele);
-                    }}>
-              <Text style={[
+                    styles.itemContainer,
+                    isSelected && {
+                        backgroundColor: COLOR_SELECTED_ITEM_BACKGROUND,
+                    },
+                ]} onPress={() => {
+                    onPress(ele);
+                }}>
+                    <Text style={[
                         styles.itemLabel,
                         {
                             fontSize: size,
                             lineHeight: size * 1.5,
                         },
                     ]}>
-                {ele.label}
-              </Text>
-            </TouchableOpacity>);
+                        {ele.label}
+                    </Text>
+                </TouchableOpacity>);
             })}
-      </View>);
+        </View>);
     }
     else {
         return null;

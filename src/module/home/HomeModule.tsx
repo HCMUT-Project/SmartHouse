@@ -35,9 +35,7 @@ const Home = ({ navigation }: MainNavigationProp<MainRoutes.Home>) => {
     </SafeAreaView>
   );
 };
-const data = [
-  {}
-]
+
 export default Home;
 
 const styles = StyleSheet.create({

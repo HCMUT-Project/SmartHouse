@@ -70,9 +70,9 @@ export const SelectForm = ({
   };
   return (
     <View style={styles.container}>
-      <Text style={[textStyles.normalMedium, styles.caption]}>
+      <Text style={[textStyles.normalBold, styles.caption]}>
         {caption}
-        <Text>
+        <Text style={textStyles.mediumBold}>
           {isRequire && editable !== false && disabled !== true ? '*' : ''}
         </Text>
       </Text>
