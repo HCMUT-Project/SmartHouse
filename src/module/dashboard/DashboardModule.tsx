@@ -1,10 +1,8 @@
-import React, { createRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Dimensions, StyleSheet, Text, View, ScrollView, SafeAreaView, TouchableOpacity, Image } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import { textStyles, viewStyles } from '../../styles';
 import { Header } from '../../components/header';
-import { BottomSheet, BottomSheetRef } from '../../components/bottomSheet';
-import { COLOR, HEIGHT_WINDOW, IMAGE } from '../../constants';
 import { SelectForm, SelectItemProps } from '../../components/selectForm';
 const getRandomColor = () => {
   var letters = '0123456789ABCDEF';
@@ -122,7 +120,7 @@ const DashboardModule = () => {
               }}
               yAxisSuffix="h"
               width={Dimensions.get('window').width - 20}
-              height={250}
+              height={Dimensions.get("window").width * 0.65}
               chartConfig={{
                 backgroundColor: '#1cc910',
                 backgroundGradientFrom: '#eff3ff',
