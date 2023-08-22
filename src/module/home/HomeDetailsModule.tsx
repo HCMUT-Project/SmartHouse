@@ -10,6 +10,11 @@ import { useFocusEffect } from '@react-navigation/native';
 import { getRoomDataAction, getRoomResetAction } from '../../redux/reducer/device/deviceReducer';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { Status } from '../../models';
+
+import { getTempAction, resetTempAction } from '../../redux/reducer/device/tempReducer';
+import { Loading } from '../../components/common';
+import { resetSetFanAction, setFanAction } from '../../redux/reducer/device/setFanReducer';
+import { resetSetLedAction, setLedAction } from '../../redux/reducer/device/setLightReducer';
 import { setSnackBarMessage } from '../../redux/reducer/snackBarReducer';
 
 const HomeDetail = ({ navigation, route }: MainNavigationProp<MainRoutes.HomeDetail>) => {
@@ -21,12 +26,23 @@ const HomeDetail = ({ navigation, route }: MainNavigationProp<MainRoutes.HomeDet
   const dataAir = useAppSelector(state => state.deviceReducer.dataAir);
   const dataLed = useAppSelector(state => state.deviceReducer.dataLed);
 
+
+  const statusTemp = useAppSelector(state => state.tempReducer.status);
+  const messageTemp = useAppSelector(state => state.tempReducer.message);
+  const dataTemp = useAppSelector(state => state.tempReducer.data);
+
+  const messageSetFan = useAppSelector(state => state.setFanReducer.message);
+  const statusSetFan = useAppSelector(state => state.setFanReducer.status);
+
+  const messageSetLed = useAppSelector(state => state.setLightReducer.message);
+  const statusSetLed = useAppSelector(state => state.setLightReducer.status);
+
   const [data, setData] = useState([
     {
       text: 'Phòng khách',
       airCond: {
         isOn: false,
-        value: '20'
+        value: ''
       },
       light: {
         isOn: false,
@@ -82,14 +98,15 @@ const HomeDetail = ({ navigation, route }: MainNavigationProp<MainRoutes.HomeDet
   useFocusEffect(
     React.useCallback(() => {
       dispatch(getRoomDataAction());
+      dispatch(getTempAction());
       return () => {
         dispatch(getRoomResetAction());
+        dispatch(resetTempAction());
       };
     }, [dispatch]),
   );
 
   useEffect(() => {
-    console.log(dataAir, " ahihhi")
     if (status !== Status.loading) {
       let newData = data.map((elem, index) => {
         if (index == 0) {
@@ -102,6 +119,19 @@ const HomeDetail = ({ navigation, route }: MainNavigationProp<MainRoutes.HomeDet
       setData(newData)
     }
   }, [dataAir])
+  useEffect(() => {
+    if (statusTemp !== Status.loading && dataTemp) {
+      let newData = data.map((elem, index) => {
+        if (index == 0) {
+          let device = elem
+          device.airCond.value = dataTemp
+          return device
+        }
+        return elem
+      })
+      setData(newData)
+    }
+  }, [dataTemp])
   useEffect(() => {
     if (status != Status.loading) {
       let newData = data.map((elem, index) => {
@@ -119,14 +149,64 @@ const HomeDetail = ({ navigation, route }: MainNavigationProp<MainRoutes.HomeDet
   useEffect(() => {
     if (status == Status.error) {
       if (message && !stringIsEmpty(message)) {
-        setSnackBarMessage(message, 'error')
+        dispatch(setSnackBarMessage(message, 'error'))
       }
       if (messageLed && !stringIsEmpty(messageLed)) {
-        setSnackBarMessage(messageLed, 'error')
+        dispatch(setSnackBarMessage(messageLed, 'error'))
       }
     }
-  }, [message, messageLed])
+    if (statusTemp == Status.error) {
+      if (messageTemp && !stringIsEmpty(messageTemp)) {
+        dispatch(setSnackBarMessage(messageTemp, 'error'))
+      }
+    }
+  }, [message, messageLed, messageTemp])
+
+
+  useEffect(() => {
+    if (statusSetLed == Status.error) {
+      if (messageSetLed && !stringIsEmpty(messageSetLed)) {
+        dispatch(setSnackBarMessage(messageSetLed, 'error'))
+        dispatch(getRoomDataAction());
+        dispatch(resetSetLedAction());
+      }
+    }
+    if (statusSetLed == Status.success) {
+      if (messageSetLed && !stringIsEmpty(messageSetLed)) {
+        dispatch(setSnackBarMessage(messageSetLed, 'success'))
+        dispatch(getRoomDataAction());
+        dispatch(resetSetLedAction());
+      }
+    }
+  }, [messageSetLed])
+
+  useEffect(() => {
+    console.log(messageSetFan, "messageSetFan")
+    if (statusSetFan == Status.error) {
+      if (messageSetFan && !stringIsEmpty(messageSetFan)) {
+        dispatch(setSnackBarMessage(messageSetFan, 'error'))
+        dispatch(getRoomDataAction());
+        dispatch(resetSetFanAction())
+      }
+    }
+    if (statusSetFan == Status.success) {
+      if (messageSetFan && !stringIsEmpty(messageSetFan)) {
+        dispatch(setSnackBarMessage(messageSetFan, 'success'))
+        dispatch(resetSetFanAction())
+        dispatch(getRoomDataAction());
+      }
+    }
+  }, [messageSetFan])
+
   const _onPress = (idPress: number, type: 'light' | 'air') => {
+    if (idPress == 0) {
+      if (type == 'air') {
+        dispatch(setFanAction(!data[0].airCond.isOn))
+      } else {
+        dispatch(setLedAction(!data[0].light.isOn))
+      }
+    }
+
     let newData = data.map((elem, index) => {
       if (index === idPress) {
         let device = elem
@@ -147,6 +227,8 @@ const HomeDetail = ({ navigation, route }: MainNavigationProp<MainRoutes.HomeDet
         title={` Nhà của: ${route.params.name}`}
         onPressBack={() => { navigation.goBack() }}
       />
+      {(status == Status.loading || statusTemp == Status.loading) && <Loading></Loading>}
+      {(statusSetFan == Status.loading || statusSetLed == Status.loading) && <Loading></Loading>}
       <FlatList
         showsVerticalScrollIndicator={false}
         data={data}

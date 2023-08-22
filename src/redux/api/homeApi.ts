@@ -49,3 +49,29 @@ export async function getTemp(): Promise<HttpData<DeviceModel>> {
     message: result?.data?.message,
   };
 }
+export async function setLed(isOn: boolean): Promise<HttpData<any>> {
+  let input = { value: isOn ? '1' : 0 }
+  const result = await post('data/setled', input);
+  if (result?.error) {
+    return {
+      error: 'api',
+      message: 'Có lỗi xảy ra, không ' + isOn ? ' bật ' : ' tắt ' + 'được máy đèn',
+    };
+  }
+  return {
+    message: result.data?.message
+  }
+}
+export async function setFan(isOn: boolean): Promise<HttpData<any>> {
+  let input = { value: isOn ? '1' : 0 }
+  const result = await post('data/setfan', input);
+  if (result?.error) {
+    return {
+      error: 'api',
+      message: 'Có lỗi xảy ra, không ' + isOn ? ' bận ' : ' tắt ' + 'được máy lạnh',
+    };
+  }
+  return {
+    message: result.data?.message
+  }
+}

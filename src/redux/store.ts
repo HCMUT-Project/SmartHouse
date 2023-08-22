@@ -4,13 +4,19 @@ import snackBarReducer from './reducer/snackBarReducer';
 import changePwdReducer from './reducer/profile/changePwd.reducer';
 import userSignUpReducer from './reducer/profile/user.signUp.reducer';
 import deviceReducer from './reducer/device/deviceReducer';
+import tempReducer from './reducer/device/tempReducer';
+import setFanReducer from './reducer/device/setFanReducer';
+import setLightReducer from './reducer/device/setLightReducer';
 export const store = configureStore({
   reducer: {
     userReducer: userReducer,
     snackBarReducer: snackBarReducer,
     changePwdReducer,
     userSignUpReducer,
-    deviceReducer
+    deviceReducer,
+    tempReducer,
+    setFanReducer,
+    setLightReducer
   },
 });
 

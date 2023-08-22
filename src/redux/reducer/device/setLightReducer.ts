@@ -2,21 +2,19 @@ import { HttpData } from '../../../helpers/api.helper';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Status } from '../../../models/Status';
 import { AppThunk } from '../../store';
-import { getLed, getAir, getTemp } from '../../api/homeApi';
+import {  setFan, setLed } from '../../api/homeApi';
 import { DeviceModel } from '../../../models/Devices';
 
 export interface TempState {
     status: Status;
     message: string | undefined;
-    data: undefined | string;
 }
 export const initState: TempState = {
     status: Status.idle,
     message: '',
-    data: undefined
 };
-export const tempSlide = createSlice({
-    name: 'tempSlide',
+export const lightSlide = createSlice({
+    name: 'lightSlide',
     initialState: initState,
     reducers: {
         status: (state: TempState, action: PayloadAction<Status>) => {
@@ -25,37 +23,33 @@ export const tempSlide = createSlice({
         reset: (state: TempState) => {
             state.status = Status.idle;
             state.message = '';
-            state.data = '';
         },
         data: (state: TempState, action: PayloadAction<TempState>) => {
             state.status = action.payload.status;
             state.message = action.payload.message;
-            state.data = action.payload.data
         },
     },
 });
 
-export const getTempAction = (): AppThunk =>
+export const setLedAction = (isOn: boolean): AppThunk =>
     async dispatch => {
-        dispatch(tempSlide.actions.status(Status.loading));
-        const result: HttpData<DeviceModel> = await getTemp();
+        dispatch(lightSlide.actions.status(Status.loading));
+        const result: HttpData<DeviceModel> = await setLed(isOn);
         if (result.error) {
-            dispatch(tempSlide.actions.data({
+            dispatch(lightSlide.actions.data({
                 status: Status.error,
                 message: result.message,
-                data: undefined
             }))
         } else {
             dispatch(
-                tempSlide.actions.data({
+                lightSlide.actions.data({
                     status: Status.success,
                     message: result.message,
-                    data: result.data?.value
                 }),
             );
         }
     };
-export const resetTempAction = (): AppThunk => async dispatch => {
-    dispatch(tempSlide.actions.reset());
+export const resetSetLedAction = (): AppThunk => async dispatch => {
+    dispatch(lightSlide.actions.reset());
 };
-export default tempSlide.reducer;
+export default lightSlide.reducer;

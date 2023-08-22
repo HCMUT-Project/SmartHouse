@@ -32,6 +32,8 @@ export const deviceSlide = createSlice({
         reset: (state: DeviceState) => {
             state.status = Status.idle;
             state.message = '';
+            state.dataLed = '0';
+            state.dataAir = '0';
         },
         data: (state: DeviceState, action: PayloadAction<DeviceState>) => {
             state.status = action.payload.status;
