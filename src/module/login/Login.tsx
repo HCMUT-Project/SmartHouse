@@ -37,8 +37,10 @@ const Login = ({ navigation }: MainNavigationProp) => {
   const message = useAppSelector(state => state.userReducer.message);
   const loginData = useAppSelector(state => state.userReducer.loginData);
 
-  const [username, setUsername] = useState('thanhtuanvp2002@gmail.com');
-  const [password, setPassword] = useState('12345678');
+  // const [username, setUsername] = useState('thanhtuanvp2002@gmail.com');
+  // const [password, setPassword] = useState('12345678');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [errUsername, setErrUsername] = useState('');
   const [errPwd, setErrPwd] = useState('');
 
