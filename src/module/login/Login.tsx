@@ -122,7 +122,6 @@ const Login = ({ navigation }: MainNavigationProp) => {
         savePwd(username, password);
       }
       dispatch(setSnackBarMessage('Đăng nhập thành công', 'success'));
-      navigation.navigate(MainRoutes.BottomBar)
     }
     if (status === Status.error && message !== '') {
       Alert.alert(STRING.popup.error, message, [

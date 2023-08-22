@@ -57,5 +57,8 @@ export const IMAGE = {
     ic_checkbox_disable: require('../assets/images/ic_checkbox_disable.png'),
     ic_checkbox_subtract: require('../assets/images/ic_checkbox_subtract.png'),
     logo: require('../assets/images/1024.png'),
+    ic_air: require('../assets/images/ic_air.png'),
+    ic_light: require('../assets/images/ic_light.png'),
+
   };
   

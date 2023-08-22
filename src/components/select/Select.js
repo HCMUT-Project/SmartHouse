@@ -1,9 +1,9 @@
 import React, { createRef, useEffect, useState } from 'react';
 import { Image, Platform, StyleSheet, Text, View, TouchableOpacity, } from 'react-native';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming, } from 'react-native-reanimated';
-import { COLOR, HEIGHT_SCREEN, SIZE } from '../../styles';
+import { COLOR , SIZE,HEIGHT_SCREEN} from '../../constants';
 import { BottomSheet } from '../bottomSheet';
-import Skeleton from '../skeleton/Skeleton';
+import Skeleton from './Skeleton';
 // CONSTANT
 const FONT_FAMILY = 'System';
 const COLOR_ERROR = COLOR.error;
