@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
   login_btn: {
     borderRadius: 10,
     marginVertical: SIZE[10],
-    backgroundColor: COLOR.red,
+    backgroundColor: COLOR.infoBorder,
   },
   version: {
     bottom: SIZE[24],
@@ -227,12 +227,13 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   signUp: {
+    marginTop:12,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
   signUpLabel: {
     ...textStyles.normal,
-    color: COLOR._FA8C16,
+    // color: COLOR._FA8C16,
   },
 });

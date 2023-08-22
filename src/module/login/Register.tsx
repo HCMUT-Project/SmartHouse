@@ -80,7 +80,7 @@ const Register = ({ navigation }: MainNavigationProp) => {
           "email": email,
           "password": password,
           "name": fullName,
-          "photoURL": "",
+          "photoURL": "https://i.pinimg.com/564x/26/80/b2/2680b245cf06bcd901518a53a02e6c9a.jpg",
           "phoneNumber": phoneNumber
         }),
       );
@@ -157,7 +157,7 @@ const Register = ({ navigation }: MainNavigationProp) => {
             <TextFieldForm
               caption={STRING.signUp.email}
               value={phoneNumber}
-              keyboardType={'phone-pad'}
+              // keyboardType={'phone-pad'}
               onChangeText={onChangeEmail}
               error={errPhoneNumber}
             />
@@ -223,7 +223,7 @@ const styles = StyleSheet.create({
   login_btn: {
     borderRadius: 10,
     marginVertical: SIZE[10],
-    backgroundColor: COLOR.red,
+    backgroundColor: COLOR.infoBorder,
   },
   version: {
     bottom: SIZE[24],

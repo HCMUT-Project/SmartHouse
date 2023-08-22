@@ -41,12 +41,9 @@ export async function changePwdAPI({
 export async function signUpAPI(input: SignUpDTO): Promise<HttpData<ApiModel>> {
   const result = await post('user/signup', input);
   if (result?.error) {
-    return result;
-  }
-  if (result.data?.message !== 'success') {
     return {
       error: 'Api',
-      message: result?.data?.message,
+      message: 'Có lỗi xảy ra không thể đăng ký tài khoản',
     };
   }
   return {

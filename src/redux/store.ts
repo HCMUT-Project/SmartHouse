@@ -7,6 +7,7 @@ import deviceReducer from './reducer/device/deviceReducer';
 import tempReducer from './reducer/device/tempReducer';
 import setFanReducer from './reducer/device/setFanReducer';
 import setLightReducer from './reducer/device/setLightReducer';
+import getTempsReducer from './reducer/device/getTempsReducer';
 export const store = configureStore({
   reducer: {
     userReducer: userReducer,
@@ -16,7 +17,8 @@ export const store = configureStore({
     deviceReducer,
     tempReducer,
     setFanReducer,
-    setLightReducer
+    setLightReducer,
+    getTempsReducer
   },
 });
 

@@ -58,7 +58,8 @@ const ProfileModule = ({ navigation }: ProfileModuleProps) => {
       <View style={styles.body}>
         <ScrollView contentContainerStyle={styles.container}>
           <View style={styles.profile_view}>
-            <Image source={loginData?.avatar ? { uri: API_DOMAIN + "/" + loginData?.avatar } : IMAGE.no_img} style={styles.avatar} />
+            {/* <Image source={IMAGE.no_img} style={styles.avatar} /> */}
+            <Image source={loginData?.avatar ? { uri: loginData?.avatar } : IMAGE.no_img} style={styles.avatar} />
             <View style={styles.profile_info}>
               <Text style={textStyles.medium}>{loginData?.name}</Text>
               <Text style={[textStyles.normal, { color: COLOR._7A7A7A }]}>

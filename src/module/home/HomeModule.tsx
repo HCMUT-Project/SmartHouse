@@ -21,7 +21,7 @@ const Home = ({ navigation }: MainNavigationProp<MainRoutes.Home>) => {
       <Text style={[textStyles.mediumBold, { margin: 16 }]}>Danh sách nhà của bạn</Text>
       <FlatList
         showsVerticalScrollIndicator={false}
-        data={['Xuân Tùng', 'Thành Tuân', 'Tuấn Cường', 'Tiến Dũng', 'Thạnh Thạnh']}
+        data={['Nhà Demo','Xuân Tùng', 'Thành Tuân', 'Tuấn Cường', 'Tiến Dũng', 'Thạnh Thạnh']}
         numColumns={2}
         contentContainerStyle={{ paddingHorizontal: 16, justifyContent: 'center', alignItems: 'center' }}
         renderItem={({ item, index }) =>

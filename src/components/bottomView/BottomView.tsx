@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: SIZE[4],
     borderRadius: 10,
-    backgroundColor: COLOR.light_red,
+    backgroundColor: COLOR.infoBorder,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',

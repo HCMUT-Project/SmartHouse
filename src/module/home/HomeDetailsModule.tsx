@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Switch, StyleSheet, Text, View, SafeAreaView, FlatList, Image, TouchableOpacity, Platform } from 'react-native';
+import { Switch, StyleSheet, Text, View, SafeAreaView, FlatList, Image, TouchableOpacity, Platform, Alert } from 'react-native';
 import { COLOR, IMAGE, SIZE, WIDTH_SCREEN } from '../../constants';
 import { textStyles } from '../../styles';
 import { MainNavigationProp } from '../../routes/type';
@@ -39,7 +39,7 @@ const HomeDetail = ({ navigation, route }: MainNavigationProp<MainRoutes.HomeDet
 
   const [data, setData] = useState([
     {
-      text: 'Phòng khách',
+      text: 'Phòng khách (demo)',
       airCond: {
         isOn: false,
         value: ''
@@ -181,7 +181,6 @@ const HomeDetail = ({ navigation, route }: MainNavigationProp<MainRoutes.HomeDet
   }, [messageSetLed])
 
   useEffect(() => {
-    console.log(messageSetFan, "messageSetFan")
     if (statusSetFan == Status.error) {
       if (messageSetFan && !stringIsEmpty(messageSetFan)) {
         dispatch(setSnackBarMessage(messageSetFan, 'error'))
@@ -281,7 +280,9 @@ const HomeDetail = ({ navigation, route }: MainNavigationProp<MainRoutes.HomeDet
               </View>
             )
           } else {
-            return <TouchableOpacity style={[styles.home, { alignItems: 'center', flex: undefined }]} onPress={() => { }}>
+            return <TouchableOpacity style={[styles.home, { alignItems: 'center', flex: undefined }]} onPress={() => {
+              Alert.alert('Thông báo', 'Chức năng thêm phòng đang được phát triển')
+             }}>
               <Image style={{
                 width: 60,
                 height: 60,

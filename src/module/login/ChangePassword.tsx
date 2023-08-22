@@ -276,6 +276,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     bottom: 0,
     marginHorizontal: SIZE[20],
-    backgroundColor: COLOR.red,
+    backgroundColor: COLOR.infoBorder,
   },
 });
