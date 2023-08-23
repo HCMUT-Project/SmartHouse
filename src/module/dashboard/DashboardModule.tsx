@@ -39,6 +39,12 @@ const DashboardModule = () => {
     React.useCallback(() => {
       dispatch(getListTempAction());
       return () => {
+        setLegend(['Phòng khách'])
+        setDataSetAir([{
+          data: [Math.random() * 24, Math.random() * 24, Math.random() * 24, Math.random() * 24, Math.random() * 24, Math.random() * 24, Math.random() * 24],
+          strokeWidth: 1,
+          color: (opacity = 1) => 'blue'
+        }])
         dispatch(resetListTempAction());
       };
     }, [dispatch]),
