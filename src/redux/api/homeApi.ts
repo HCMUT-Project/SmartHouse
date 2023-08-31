@@ -1,5 +1,5 @@
 import { HttpData, get, post } from '../../helpers/api.helper';
-import { DeviceModel, TempData } from '../../models/Devices';
+import { DeviceModel, Noti, TempData } from '../../models/Devices';
 
 export async function getAir(): Promise<HttpData<DeviceModel>> {
   const result = await get('data/lastfan');
@@ -90,37 +90,20 @@ export async function getTempDashBoard(): Promise<HttpData<TempData[]>> {
     data: result?.data.data as TempData[],
     message: result?.data?.message,
   };
-  // return {
-  //   data: [
-  //     {
-  //       "time": "2023-08-17T00:00:00.000Z",
-  //       "data": 0
-  //     },
-  //     {
-  //       "time": "2023-08-18T00:00:00.000Z",
-  //       "data": 0
-  //     },
-  //     {
-  //       "time": "2023-08-19T00:00:00.000Z",
-  //       "data": 0
-  //     },
-  //     {
-  //       "time": "2023-08-20T00:00:00.000Z",
-  //       "data": 0
-  //     },
-  //     {
-  //       "time": "2023-08-21T00:00:00.000Z",
-  //       "data": 0
-  //     },
-  //     {
-  //       "time": "2023-08-22T00:00:00.000Z",
-  //       "data": 32.875
-  //     },
-  //     {
-  //       "time": "2023-08-23T00:00:00.000Z",
-  //       "data": 0
-  //     }
-  //   ] as TempData[],
-  //   message: "result?.data?.message",
-  // };
+}
+export async function getNotifications(): Promise<HttpData<Noti[]>> {
+  const result = await get('data/getnotification');
+  if (result?.error) {
+    return result;
+  }
+  if (result.data?.message !== 'success') {
+    return {
+      error: 'api',
+      message: 'Có lỗi xảy ra, không lấy được thông tin đèn',
+    };
+  }
+  return {
+    data: result?.data.notifications as Noti[],
+    message: result?.data?.message,
+  };
 }

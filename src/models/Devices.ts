@@ -5,5 +5,10 @@ export interface DeviceModel {
 }
 export interface TempData {
     "time": string,
-    "data": string| number
+    "data": string | number
+}
+export interface Noti {
+    "feed": string,
+    "createAt": string,
+    "content": string,
 }
